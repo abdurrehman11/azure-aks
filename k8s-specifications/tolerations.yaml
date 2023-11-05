@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: static-web
+  labels: 
+    role: myrole
+spec:
+    containers:
+    - name: web
+      image: nginx
+      ports:
+        - name: web
+          containerPort: 80
+          protocol: TCP
+    tolerations:
+      - key: "app"
+        operator: Equal
+        value: "small"
+        effect: NoSchedule
+
+
+# When a node is tainted with NoSchedule, new pods that do not tolerate 
+# this taint will not be scheduled on the node. Existing pods on the node remain unaffected.
+
+# kubectl taint nodes aks-agentpool-70714251-vmss000000 app=small:NoSchedule
+# kubectl taint nodes aks-userprojects-70714251-vmss000000 app=large:NoSchedule
+
+# kubectl taint nodes aks-userprojects-70714251-vmss000000 app-
+# kubectl taint nodes aks-agentpool-70714251-vmss000000 app-
+
+# When a node is tainted with NoExecute, it has a similar effect to NoSchedule
+# but is more aggressive. It means that new pods won't be scheduled on the 
+# tainted node, and existing pods that do not tolerate the taint will be evicted 
+# (removed) from the node.
+
+# kubectl taint nodes aks-userprojects-70714251-vmss000000 app=large:NoExecute
+# kubectl taint nodes aks-agentpool-70714251-vmss000000 app=small:NoExecute

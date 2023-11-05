@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hey-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hey
+  template:
+    metadata:
+      labels:
+        app: hey
+    spec:
+      containers:
+      - name: hey
+        image: williamyeh/hey
+        command: ["/bin/sh"]
+        args: ["-c", "hey -n 1000 -c 100 https://google.com"]
