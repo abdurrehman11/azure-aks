@@ -151,3 +151,4 @@ helm install grafana grafana/grafana -n ingress-basic
 - https://www.youtube.com/playlist?list=PL9aNQqB-xjbAjGjkAKuydrYa8ZDM4TcI7
 - https://github.com/MuhammedKalkan/OpenLens
 - https://medium.com/geekculture/fix-essential-functionality-missing-in-the-new-openlens-version-f9ac862e9e27
+- https://stacksimplify.com/azure-aks/azure-kubernetes-service-ingress-basics/
